@@ -20,21 +20,20 @@ def display_inventory(inventory):
         for i, item in enumerate(inventory, start=1):
             print(f"{i}. {item}")
 
-def discover_artifact(player_stats, artifacts, artifact_name):
+def discover_artifact(player_stats, _artifacts, artifact_name):
     """Find an artifact and apply its effect to the player."""
-    if artifact_name in artifacts:
-        artifact = artifacts[artifact_name]
+    if artifact_name in _artifacts:
+        artifact = _artifacts[artifact_name]
         print(f"You found the {artifact_name}: {artifact['description']}.")
         if artifact["effect"] == "increases health":
             player_stats["health"] += artifact["power"]
         elif artifact["effect"] == "enhances attack":
             player_stats["attack"] += artifact["power"]
         print(f"Effect: {artifact['effect']}. Power: {artifact['power']}.")
-        artifacts.pop(artifact_name)
+        del _artifacts[artifact_name]
     else:
         print("You found nothing of interest.")
-    return player_stats, artifacts
-
+    return player_stats, _artifacts
 
 def find_clue(clues, new_clue):
     """Find a unique clue and add it to the clues set."""
@@ -104,6 +103,10 @@ def enter_dungeon(player_stats, inventory, dungeon_rooms, clues, artifacts):
         display_inventory(inventory)
         display_player_status(player_stats)
     return player_stats, inventory, clues
+
+def example_function():
+    """Example function to demonstrate docstring usage."""
+    pass
 
 def main():
     player_stats = {'health': 100, 'attack': 5}
