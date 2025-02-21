@@ -1,4 +1,5 @@
-# Your code goes here'''Enhance your text-based adventure game by using dictionaries to manage enchanted artifacts \'''
+'''Enhance your text-based adventure game by using dictionaries to manage enchanted artifacts \
+    and sets to handle unique clues in a cryptic library.'''
 import random
 
 def display_player_status(player_stats):
@@ -20,20 +21,20 @@ def display_inventory(inventory):
             print(f"{i}. {item}")
 
 def discover_artifact(player_stats, artifacts, artifact_name):
-    """Discover an artifact and update player stats based on its effect."""
+    """Find an artifact and apply its effect to the player."""
     if artifact_name in artifacts:
         artifact = artifacts[artifact_name]
-        print(f"You found the {artifact_name}! {artifact['description']}")
-        if artifact['effect'] == 'increases health':
-            player_stats['health'] += artifact['power']
-            print(f"Your health increased by {artifact['power']}!")
-        elif artifact['effect'] == 'enhances attack':
-            player_stats['attack'] += artifact['power']
-            print(f"Your attack increased by {artifact['power']}!")
-        del artifacts[artifact_name]  
+        print(f"You found the {artifact_name}: {artifact['description']}.")
+        if artifact["effect"] == "increases health":
+            player_stats["health"] += artifact["power"]
+        elif artifact["effect"] == "enhances attack":
+            player_stats["attack"] += artifact["power"]
+        print(f"Effect: {artifact['effect']}. Power: {artifact['power']}.")
+        artifacts.pop(artifact_name)
     else:
         print("You found nothing of interest.")
     return player_stats, artifacts
+
 
 def find_clue(clues, new_clue):
     """Find a unique clue and add it to the clues set."""
